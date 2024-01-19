@@ -16,9 +16,7 @@ func Swap(query string, component templ.Component) templ.Component {
 
 		res := fmt.Sprintf(`
             <script nonce="%s">
-				window.addEventListener("DOMContentLoaded", () => {
-                	document.querySelector("%s").innerHTML = '%s'
-				})
+                document.querySelector("%s").innerHTML = '%s'
             </script>
         `, contextutil.ContextGetNonce(ctx), query, buf)
 
