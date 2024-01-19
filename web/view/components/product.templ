@@ -1,0 +1,14 @@
+package components
+
+import "github.com/ruhollahh/go-progressive-rendering/internal/service"
+import "strconv"
+
+templ Product(product *service.ProductRes) {
+	<div class="grid gap-4 md:gap-10 items-start">
+		<h1 class="font-bold text-3xl lg:text-4xl">{ product.Title }</h1>
+		<div class="text-4xl font-bold">${ strconv.FormatInt(int64(product.Price), 10) }</div>
+		<div>
+			<p>{ product.Description }</p>
+		</div>
+	</div>
+}

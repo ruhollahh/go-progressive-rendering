@@ -1,0 +1,17 @@
+package components
+
+import "github.com/ruhollahh/go-progressive-rendering/internal/service"
+
+templ Review(review service.ReviewForProductRes) {
+	<div class="text-sm">
+		<div class="grid gap-1.5">
+			<div class="flex items-center gap-2">
+				<div class="font-semibold">
+					{ review.Username }
+				</div>
+				<div class="text-gray-500 text-xs dark:text-gray-400">{ review.Date.Format("2006-1-2") }</div>
+			</div>
+			<div>{ review.Content }</div>
+		</div>
+	</div>
+}

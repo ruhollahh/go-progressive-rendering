@@ -1,0 +1,20 @@
+package pages
+
+import "github.com/ruhollahh/go-progressive-rendering/internal/service"
+import "github.com/ruhollahh/go-progressive-rendering/web/view"
+import "github.com/ruhollahh/go-progressive-rendering/web/view/components"
+
+type ProductViewModel struct {
+	Product *service.ProductRes
+}
+
+templ Product(model ProductViewModel) {
+	@view.Layout(model.Product.Title) {
+		<div class="grid md:grid-cols-2 gap-6 lg:gap-12 items-start max-w-6xl px-4 mx-auto py-6">
+			@components.Product(model.Product)
+			<div id="reviews">
+				@components.Loading()
+			</div>
+		</div>
+	}
+}

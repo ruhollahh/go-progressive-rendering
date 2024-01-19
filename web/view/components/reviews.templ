@@ -1,0 +1,14 @@
+package components
+
+import "github.com/ruhollahh/go-progressive-rendering/internal/service"
+
+templ Reviews(reviews service.ReviewsForProductRes) {
+	<div class="grid gap-4 md:gap-10 items-start">
+		<h2 class="font-bold text-2xl lg:text-3xl">Customer Reviews</h2>
+		<div class="grid gap-6">
+			for _, review := range reviews {
+				@Review(review)
+			}
+		</div>
+	</div>
+}

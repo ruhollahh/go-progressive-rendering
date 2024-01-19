@@ -1,0 +1,5 @@
+tls/
+/tmp
+/web/view/**/*.go
+/.idea
+node_modules/

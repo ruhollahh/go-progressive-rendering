@@ -1,0 +1,28 @@
+package components
+
+import "github.com/ruhollahh/go-progressive-rendering/api/contextutil"
+import "fmt"
+import "bytes"
+import "context"
+import "io"
+
+func Swap(query string, component templ.Component) templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
+		buf := new(bytes.Buffer)
+		err := component.Render(ctx, buf)
+		if err != nil {
+			return err
+		}
+
+		res := fmt.Sprintf(`
+            <script nonce="%s">
+				window.addEventListener("DOMContentLoaded", () => {
+                	document.querySelector("%s").innerHTML = '%s'
+				})
+            </script>
+        `, contextutil.ContextGetNonce(ctx), query, buf)
+
+		_, err = io.WriteString(w, res)
+		return err
+	})
+}
